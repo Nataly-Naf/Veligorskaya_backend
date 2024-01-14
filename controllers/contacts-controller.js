@@ -7,6 +7,11 @@ const addContact = async (req, res) => {
   if (error) {
     throw HttpError(400, error.message);
   }
+  const { email } = req.params;
+  const contact = await Contact.findOne({ email });
+  if (contact) {
+    throw HttpError(409, "Email already exists");
+  }
   const result = await Contact.create(req.body);
   res.status(201).json(result);
 };
