@@ -6,7 +6,10 @@ const addContact = async (req, res) => {
   const { email } = req.body;
   const contact = await Contact.findOne({ email });
   if (contact) {
-    throw HttpError(409, "Email already exists");
+    throw HttpError(
+      409,
+      "Користувач з такою електронною адресою вже відправив запит на консультацію. Спробуйте ввести іншу."
+    );
   }
 
   const result = await Contact.create(req.body);

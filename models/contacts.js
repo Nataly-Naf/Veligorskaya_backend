@@ -5,18 +5,18 @@ import { handleMongooseError } from "../helpers/index.js";
 
 export const addSchema = Joi.object({
   name: Joi.string().required().messages({
-    "string.empty": `"name" cannot be an empty field`,
-    "any.required": `"name" is a required field`,
+    "string.empty": `Поле "і'мя" не може бути пустим. Введіть свої дані`,
+    "any.required": `"Ім'я" є обов'язковим полем`,
   }),
   surname: Joi.string(),
   email: Joi.string().email().required().messages({
-    "string.empty": `"email" cannot be an empty field`,
-    "any.required": `"email" is a required field`,
+    "string.empty": `Поле "адреса електронної пошти" не може бути пустим. Введіть свої дані`,
+    "any.required": `"Адреса електронної пошти" є обов'язковим полем`,
   }),
   phone: Joi.number().required().messages({
-    "string.empty": `"phone" cannot be an empty field`,
-    "string.base": `"phone" should be a type of 'number'`,
-    "any.required": `"phone" is a required field`,
+    "string.empty": `Поле "номер телефону" не може бути пустим. Введіть свої дані`,
+    "string.base": `"Номер телефону" повинен містити лише цифри`,
+    "any.required": `"Номер телефону" є обов'язковим полем`,
   }),
 });
 
@@ -27,7 +27,6 @@ export const contactSchema = new Schema({
   },
   surname: {
     type: String,
-    required: [false],
   },
   email: {
     type: String,
